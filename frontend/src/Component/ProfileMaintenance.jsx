@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import SideBar from './SideBar';
 const ProfileMaintenance = () => {
   // Initial state for user profile
   const [profile, setProfile] = useState({
@@ -96,7 +96,7 @@ const ProfileMaintenance = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // In a real app, this would be an API call to update the profile
     // For now, we just simulate a successful update
     setTimeout(() => {
@@ -106,7 +106,7 @@ const ProfileMaintenance = () => {
         message: 'Profile updated successfully!',
         type: 'success',
       });
-      
+
       // Hide notification after 3 seconds
       setTimeout(() => {
         setNotification({ show: false, message: '', type: '' });
@@ -115,7 +115,10 @@ const ProfileMaintenance = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+    <div className="h-screen flex ">
+    <SideBar />
+    <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg flex-1">
+
       {notification.show && (
         <div className={`p-4 mb-4 rounded-md ${
           notification.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
@@ -359,6 +362,7 @@ const ProfileMaintenance = () => {
           </div>
         )}
       </form>
+    </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import Upload from './Component/Upload';
 import ProfileMaintenance from './Component/ProfileMaintenance';
 const App = () => {
   return (
-    <Router>
+    <Router >
       <Routes>
          <Route path="/" element={<Login />} />
          <Route path="/signup" element={<Signup/>}/>
