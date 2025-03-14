@@ -47,9 +47,8 @@ const Login = () => {
           <select className="block border border-grey-light w-full p-3 rounded mb-4" value={role}
               onChange={(e) => setRole(e.target.value)}>
   <option value="" disabled selected >Select your role</option>
-  <option value="student">Admin</option>
-  <option value="teacher">Manager</option>
-  <option value="event_coordinator">Employee</option>
+  <option value="student">Student</option>
+  <option value="teacher">Teacher</option>
 </select>
 
           <button className="w-full text-center py-3 rounded bg-black text-white hover:bg-gray-400 focus:outline-none my-1">Login</button>

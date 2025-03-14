@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import logo from "../assets/react.svg";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { BsGoogle } from "react-icons/bs";
 const Signup = () => {
   const navigate = useNavigate();
 
@@ -61,7 +62,9 @@ const Signup = () => {
           Already Have an account{" "}<span onClick={handleAccount} className="underline text-blue-900"> Login </span>
         </p>
         </div>
-
+        <div>
+        
+        </div>
        </div>
       </div>
     </div>
