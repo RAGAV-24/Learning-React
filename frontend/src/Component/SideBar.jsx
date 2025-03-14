@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { HiArrowCircleRight } from "react-icons/hi";
 import { useNavigate } from 'react-router-dom';
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,7 @@ const SideBar = () => {
           className="fixed left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-r-md hover:bg-gray-700"
           onClick={() => setIsOpen(true)}
         >
-          ->
+          <HiArrowCircleRight />
         </button>
       )}
 
