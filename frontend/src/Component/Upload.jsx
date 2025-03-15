@@ -14,8 +14,7 @@ const Upload = () => {
       setFile(e.target.files[0]);
     }
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!companyName || !year || !experience || !file) {
@@ -26,18 +25,40 @@ const Upload = () => {
     setIsSubmitting(true);
     setMessage({ text: 'Uploading...', type: 'info' });
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setMessage({ text: 'Upload successful!', type: 'success' });
+    const formData = new FormData();
+    formData.append("companyName", companyName);
+    formData.append("year", year);
+    formData.append("experience", experience);
+    formData.append("file", file);
 
-      setCompanyName('');
-      setYear('');
-      setExperience('');
-      setFile(null);
-    }, 2000);
+    try {
+      const response = await fetch("http://localhost:8000/api/upload", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("token")}`, // Assuming token is stored in localStorage
+        },
+        credentials: "include", // Ensures cookies/session data are sent if required
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setMessage({ text: 'Upload successful!', type: 'success' });
+        setCompanyName('');
+        setYear('');
+        setExperience('');
+        setFile(null);
+      } else {
+        setMessage({ text: result.message || 'Upload failed', type: 'error' });
+      }
+    } catch (error) {
+      setMessage({ text: 'Server error', type: 'error' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  return (
+    return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <SideBar className="w-1/4 min-h-screen bg-gray-900 text-white" />
